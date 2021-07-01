@@ -1,0 +1,41 @@
+{% extends 'page_layout.html' %}
+{% block body_content %}
+<div class="container" style="margin-top: 70px;">
+    {% if content %}
+     <p>{{content}}</p>
+     {% endif %}
+    <a class = "btn btn-primary" href ="{% url 'addContact' %}">Add Contact</a>
+    <br>
+    <table class="table" border="1">
+        <thead class="thead-dark">
+            <th>Name</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for contact in phoneListDict %}
+            
+            <tr>
+                <td>{{contact.name}}</td>
+                <td><a href="{% url 'edit' %}?id={{ contact.id | urlencode }}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{% url 'delete' %}?id={{ contact.id | urlencode }}" onclick ="confirmDelete()" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'show' %}?id={{ contact.id | urlencode }}" class="btn btn-success">Show</a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table> 
+</div>
+<script>
+    function confirmDelete(){
+        if(confirm("Are you sure want to delete!")){
+            
+        }
+        else{
+            event.preventDefault();
+        }
+        
+    }
+
+</script>
+{% endblock %}
+
