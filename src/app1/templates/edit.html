@@ -1,0 +1,32 @@
+{% extends 'page_layout.html' %}
+{% block body_content %}
+
+<div class="container" style="margin-top: 70px;">
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="{% url 'update' %}" method='POST'>
+            {% csrf_token %}
+            {% for list in contactData %}
+            <div class="tag"><strong>Name</strong></div>
+                <input type="text" name="name" id="name" value='{{list.name}}' autofocus required>
+            <br>
+            <div class="tag"><strong>Email</strong></div>    
+                <input type="text" name="email" id="email" value='{{list.email}}' required>
+            <br>
+            <div class="tag"><strong>Contact</strong></div>
+                <input type="number" name="contact" id="contact" value='{{list.contact}}' required>
+            <br>
+            <div class="tag"><strong>Address</strong></div>
+                <input type="text" name="address" id="address" value='{{list.address}}' required>
+            <br>
+            <input type="hidden" name="id" value='{{list.id}}'>
+            {% endfor %}
+            <br>
+            <input type="submit" value="update">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

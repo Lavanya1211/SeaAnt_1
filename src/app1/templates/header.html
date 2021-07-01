@@ -1,0 +1,48 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'home' %}">Application Name</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li class="active"><a href="{% url 'about' %}">About</a></li>
+            <li class="active"><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" id="hover-dropdown">
+            {% if user.is_authenticated %}
+
+            <li>
+    
+                <div class="dropdown">
+                  <h4 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="color:rgb(0, 238, 255); border:1px solid white; border-radius:10px; padding:5px;" >Hello, {{user.username}}</h4>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    
+                    <ul>
+                        
+                        <li><a class="dropdown-item" href="{% url 'phone_book' %}">Phone Book</a></li>
+                        <li><a class="dropdown-item" href="{% url 'weather' %}">Weather</a></li>
+                    </ul>
+                  </div>
+                </div>
+                </li>
+                
+
+            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span>Sign_Up</Sign-Up> </a></li>
+            <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    </div>
+</nav>
+<style>
+    .dropdown:hover>.dropdown-menu {
+      display: block;
+      
+    }
+    .dropdown>.dropdown-toggle:active {
+        pointer-events: none;
+        
+    }
+</style>
